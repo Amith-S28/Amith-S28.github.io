@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amith Sirisilla Jayadevgari | AI/ML & Full-Stack Portfolio</title>
+    <!-- Google Fonts: Outfit (headings) and Inter (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Dynamic Background Elements -->
+    <div class="bg-paper-texture"></div>
+    <canvas id="sakura-canvas"></canvas>
+    <div class="shader-gradient-wrapper">
+        <div class="mesh-blob mb-1"></div>
+        <div class="mesh-blob mb-2"></div>
+        <div class="mesh-blob mb-3"></div>
+        <div class="mesh-blob mb-4"></div>
+    </div>
+
+    <!-- Sticky Navigation -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-accent">A</span>mith<span class="logo-dot">.</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <nav class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#journey" class="nav-link">Journey</a>
+                <a href="#certifications" class="nav-link">Certifications</a>
+                <a href="#achievements" class="nav-link">Awards</a>
+                <a href="#contact" class="nav-link nav-btn">Get In Touch</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-badge reveal">AI/ML & Full-Stack Developer</span>
+                    <h1 class="hero-title reveal" style="transition-delay:0.1s">
+                        Building intelligent systems, <br>
+                        <span class="txt-rotate" data-period="2000" data-rotate='[ "solving complex problems.", "architecting the future.", "visualizing data." ]'></span>
+                    </h1>
+                    <p class="hero-description reveal" style="transition-delay:0.2s">
+                        Dedicated Computer Science student specializing in Artificial Intelligence, spatial optimization engines, computer vision, and high-performance WebGL interfaces. 
+                    </p>
+                    <div class="hero-actions reveal" style="transition-delay:0.3s">
+                        <a href="#projects" class="btn btn-primary magnetic-btn">View My Work</a>
+                        <a href="#contact" class="btn btn-secondary magnetic-btn">Let's Connect</a>
+                        <a href="Amith_Resume.pdf" download class="btn btn-ghost magnetic-btn" title="Download Resume">
+                            <i class="fa-solid fa-download"></i> Resume
+                        </a>
+                    </div>
+                    <div class="hero-meta reveal" style="transition-delay:0.45s">
+                        <span class="availability-pill">
+                            <span class="pulse-dot"></span>
+                            Open to Opportunities
+                        </span>
+                        <span class="hero-location"><i class="fa-solid fa-location-dot"></i> Hyderabad, India</span>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span class="mouse">
+                    <span class="wheel"></span>
+                </span>
+                <span class="scroll-txt">Scroll Down</span>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="subtitle">Get to know me</span>
+                    <h2 class="title">About Me</h2>
+                </div>
+                <div class="about-grid">
+                    <div class="about-text reveal reveal-left">
+                        <p class="lead-text">
+                            I am a Computer Science student at <strong>Lovely Professional University</strong> with a passion for designing scalable, data-driven applications.
+                        </p>
+                        <p>
+                            My development philosophy centers on leveraging advanced Machine Learning frameworks alongside clean, responsive web technology to build software that feels alive and solves practical problems. I specialize in spatial algorithms, computer vision frameworks, database indexing, and user experience.
+                        </p>
+                        <div class="about-stats">
+                            <div class="stat-card tilt-card">
+                                <div class="tilt-sheen"></div>
+                                <span class="stat-num" data-count-target="4" data-count-suffix="+">4+</span>
+                                <span class="stat-label">Core AI Systems Built</span>
+                            </div>
+                            <div class="stat-card tilt-card">
+                                <div class="tilt-sheen"></div>
+                                <span class="stat-num" data-count-target="6.82" data-count-decimals="2">6.82</span>
+                                <span class="stat-label">B.Tech CGPA</span>
+                            </div>
+                            <div class="stat-card tilt-card">
+                                <div class="tilt-sheen"></div>
+                                <span class="stat-num" data-count-target="100" data-count-suffix="%">100%</span>
+                                <span class="stat-label">Local & Privacy-First</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-info reveal reveal-right">
+                        <div class="info-card tilt-card">
+                            <div class="tilt-sheen"></div>
+                            <h3>Quick Facts</h3>
+                            <ul class="info-list">
+                                <li>
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                    <span><strong>Education:</strong> Lovely Professional University (CSE)</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <span><strong>Location:</strong> Hyderabad, India</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-earth-americas"></i>
+                                    <span><strong>Interests:</strong> GIS, Neural Nets, WebGL, UI Animation</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-heart-pulse"></i>
+                                    <span><strong>Community:</strong> Cleanliness Drives & Child Welfare Volunteering</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Journey / Timeline Section -->
+        <section id="journey" class="journey-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="subtitle">My Path</span>
+                    <h2 class="title">The Journey</h2>
+                </div>
+                <div class="timeline">
+
+                    <div class="timeline-item reveal" style="transition-delay:0s">
+                        <div class="timeline-dot"><i class="fa-solid fa-trophy"></i></div>
+                        <div class="timeline-content tilt-card">
+                            <div class="tilt-sheen"></div>
+                            <span class="timeline-date">2019</span>
+                            <h3>Gold Medal — NASO Olympiad</h3>
+                            <p>Achieved a Gold Medal in the National Astronomy &amp; Science Olympiad, demonstrating an early drive toward rigorous scientific thinking and analytical problem-solving.</p>
+                            <span class="timeline-tag">Achievement</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal" style="transition-delay:0.1s">
+                        <div class="timeline-dot"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <div class="timeline-content tilt-card">
+                            <div class="tilt-sheen"></div>
+                            <span class="timeline-date">2022</span>
+                            <h3>B.Tech CSE — Lovely Professional University</h3>
+                            <p>Enrolled in Computer Science &amp; Engineering at LPU (Jalandhar, Punjab). Began specialising in AI/ML, diving into deep learning architectures, GIS systems, and full-stack web development.</p>
+                            <span class="timeline-tag">Education</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal" style="transition-delay:0.2s">
+                        <div class="timeline-dot"><i class="fa-solid fa-certificate"></i></div>
+                        <div class="timeline-content tilt-card">
+                            <div class="tilt-sheen"></div>
+                            <span class="timeline-date">2023</span>
+                            <h3>Professional Certifications Sprint</h3>
+                            <p>Completed Google Data Analytics, IBM Machine Learning, IBM Relational Database Administration, and AI Foundations (LinkedIn Learning) — building a rigorous, multi-domain technical foundation.</p>
+                            <span class="timeline-tag">Certification</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal" style="transition-delay:0.3s">
+                        <div class="timeline-dot"><i class="fa-solid fa-brain"></i></div>
+                        <div class="timeline-content tilt-card">
+                            <div class="tilt-sheen"></div>
+                            <span class="timeline-date">2024</span>
+                            <h3>Explainable Smart Parking &amp; MedRAG</h3>
+                            <p>Engineered two flagship AI systems: a multi-modal temporal-spatial parking forecaster (YOLOv8 + LSTM + Grad-CAM) and a fully offline clinical RAG pipeline with LanceDB and 0MB idle RAM footprint.</p>
+                            <span class="timeline-tag">Projects</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal" style="transition-delay:0.4s">
+                        <div class="timeline-dot"><i class="fa-solid fa-city"></i></div>
+                        <div class="timeline-content tilt-card">
+                            <div class="tilt-sheen"></div>
+                            <span class="timeline-date">2025</span>
+                            <h3>CityPlanner (AUOA) &amp; Project PEANUT</h3>
+                            <p>Built an autonomous urban optimization agent using DuckDB Spatial + WebGL + Arrow IPC streaming, and a dual-engine satellite NDVI dashboard forecasting India's green space deficit through 2035.</p>
+                            <span class="timeline-tag">Projects</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal" style="transition-delay:0.5s">
+                        <div class="timeline-dot"><i class="fa-solid fa-rocket"></i></div>
+                        <div class="timeline-content tilt-card future-card">
+                            <div class="tilt-sheen"></div>
+                            <span class="timeline-date">Now</span>
+                            <h3>Seeking Opportunities</h3>
+                            <p>Actively looking for roles in AI/ML Engineering, Full-Stack Development, or GIS-driven data science. Ready to build the next generation of intelligent, user-centric systems.</p>
+                            <span class="timeline-tag open-tag"><span class="pulse-dot"></span>Open to Work</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="subtitle">My Expertise</span>
+                    <h2 class="title">Technical Skills</h2>
+                </div>
+                <div class="skills-grid reveal">
+                    <!-- Column 1: AI/ML & Computer Vision -->
+                    <div class="skills-category">
+                        <div class="category-header">
+                            <i class="fa-solid fa-brain"></i>
+                            <h3>AI & Computer Vision</h3>
+                        </div>
+                        <div class="skills-list">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Deep Learning (CNNs, LSTMs, Transformers)</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Computer Vision (YOLOv8, OpenCV, Image Processing)</span>
+                                    <span>88%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" data-width="88%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Explainable AI (Grad-CAM, Integrated Gradients)</span>
+                                    <span>82%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" data-width="82%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Predictive Modeling (Scikit-Learn, Regression)</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" data-width="85%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Web & Systems Development -->
+                    <div class="skills-category">
+                        <div class="category-header">
+                            <i class="fa-solid fa-code"></i>
+                            <h3>Web & Systems</h3>
+                        </div>
+                        <div class="skills-list">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Full-Stack Development (React, Next.js, Node.js)</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" data-width="85%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Languages (Python, JavaScript, C#, SQL, C++)</span>
+                                    <span>88%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" data-width="88%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Databases & Spatial SQL (DuckDB, Postgres, MySQL)</span>
+                                    <span>80%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" data-width="80%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Tools & Frameworks (Git, GEE, FastAPI, Deck.gl, Docker)</span>
+                                    <span>83%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" data-width="83%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Arsenal Marquee -->
+        <section class="tech-arsenal-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="subtitle">What I Use</span>
+                    <h2 class="title">Tech Arsenal</h2>
+                </div>
+            </div>
+            <div class="marquee-wrapper">
+                <div class="marquee-track" id="marqueeTrack">
+                    <!-- Row 1 (duplicated for seamless loop) -->
+                    <div class="tech-badge"><i class="fa-brands fa-python"></i><span>Python</span></div>
+                    <div class="tech-badge"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
+                    <div class="tech-badge"><i class="fa-brands fa-react"></i><span>React</span></div>
+                    <div class="tech-badge"><i class="fa-brands fa-node-js"></i><span>Node.js</span></div>
+                    <div class="tech-badge"><i class="fa-brands fa-git-alt"></i><span>Git</span></div>
+                    <div class="tech-badge"><i class="fa-brands fa-docker"></i><span>Docker</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-brain"></i><span>PyTorch</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-eye"></i><span>OpenCV</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-database"></i><span>DuckDB</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-map"></i><span>Deck.gl</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-globe"></i><span>Google Earth Engine</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-bolt"></i><span>FastAPI</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-chart-bar"></i><span>Scikit-Learn</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-layer-group"></i><span>Next.js</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-microchip"></i><span>YOLOv8</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Apache Arrow</span></div>
+                    <!-- Duplicate for seamless infinite scroll -->
+                    <div class="tech-badge"><i class="fa-brands fa-python"></i><span>Python</span></div>
+                    <div class="tech-badge"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
+                    <div class="tech-badge"><i class="fa-brands fa-react"></i><span>React</span></div>
+                    <div class="tech-badge"><i class="fa-brands fa-node-js"></i><span>Node.js</span></div>
+                    <div class="tech-badge"><i class="fa-brands fa-git-alt"></i><span>Git</span></div>
+                    <div class="tech-badge"><i class="fa-brands fa-docker"></i><span>Docker</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-brain"></i><span>PyTorch</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-eye"></i><span>OpenCV</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-database"></i><span>DuckDB</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-map"></i><span>Deck.gl</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-globe"></i><span>Google Earth Engine</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-bolt"></i><span>FastAPI</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-chart-bar"></i><span>Scikit-Learn</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-layer-group"></i><span>Next.js</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-microchip"></i><span>YOLOv8</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Apache Arrow</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="subtitle">Selected Work</span>
+                    <h2 class="title">Featured Projects</h2>
+                </div>
+                <div class="projects-grid">
+                    <!-- Project Cards will be animated and filled with interactive details -->
+                    <div class="project-card tilt-card ripple-container" data-project="medrag">
+                        <div class="tilt-sheen"></div>
+                        <div class="project-img-container">
+                            <div class="project-icon-wrapper">
+                                <i class="fa-solid fa-file-medical"></i>
+                            </div>
+                            <div class="project-glow"></div>
+                        </div>
+                        <div class="project-meta">
+                            <span class="project-tag">AI/ML & RAG</span>
+                            <h3 class="project-title">MedRAG</h3>
+                            <p class="project-excerpt">Local, privacy-preserving Retrieval-Augmented Generation system optimizing layouts, vector database access, and LLM reasoning for clinical documents.</p>
+                            <div class="project-tech-tags">
+                                <span>Chandra OCR</span>
+                                <span>LanceDB</span>
+                                <span>Qwen 3.5</span>
+                            </div>
+                            <button class="project-link-detail btn-case">Read Case Study <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="project-card tilt-card ripple-container" data-project="cityplanner">
+                        <div class="tilt-sheen"></div>
+                        <div class="project-img-container">
+                            <div class="project-icon-wrapper">
+                                <i class="fa-solid fa-city"></i>
+                            </div>
+                            <div class="project-glow"></div>
+                        </div>
+                        <div class="project-meta">
+                            <span class="project-tag">GIS & Agent Dev</span>
+                            <h3 class="project-title">CityPlanner (AUOA)</h3>
+                            <p class="project-excerpt">Autonomous urban planner optimizing layouts based on NLP requests using DuckDB Spatial, Apache Arrow IPC, and React/Deck.gl 3D WebGL.</p>
+                            <div class="project-tech-tags">
+                                <span>DuckDB Spatial</span>
+                                <span>FastAPI</span>
+                                <span>Deck.gl</span>
+                            </div>
+                            <button class="project-link-detail btn-case">Read Case Study <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="project-card tilt-card ripple-container" data-project="smartparking">
+                        <div class="tilt-sheen"></div>
+                        <div class="project-img-container">
+                            <div class="project-icon-wrapper">
+                                <i class="fa-solid fa-square-parking"></i>
+                            </div>
+                            <div class="project-glow"></div>
+                        </div>
+                        <div class="project-meta">
+                            <span class="project-tag">Computer Vision & XAI</span>
+                            <h3 class="project-title">Explainable Smart Parking</h3>
+                            <p class="project-excerpt">Temporal-spatial forecasting unifying YOLOv8 slot detection and LSTMs for parking occupancy predictions, explained via Grad-CAM.</p>
+                            <div class="project-tech-tags">
+                                <span>YOLOv8</span>
+                                <span>LSTM</span>
+                                <span>Grad-CAM</span>
+                            </div>
+                            <button class="project-link-detail btn-case">Read Case Study <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="project-card tilt-card ripple-container" data-project="peanut">
+                        <div class="tilt-sheen"></div>
+                        <div class="project-img-container">
+                            <div class="project-icon-wrapper">
+                                <i class="fa-solid fa-leaf"></i>
+                            </div>
+                            <div class="project-glow"></div>
+                        </div>
+                        <div class="project-meta">
+                            <span class="project-tag">Full-Stack & environmental</span>
+                            <h3 class="project-title">Project PEANUT</h3>
+                            <p class="project-excerpt">Dual-engine environmental analyzer tracking vegetation index NDVI via Google Earth Engine and population forecasting green space demands for 2035.</p>
+                            <div class="project-tech-tags">
+                                <span>Next.js</span>
+                                <span>GEE</span>
+                                <span>Scikit-Learn</span>
+                            </div>
+                            <button class="project-link-detail btn-case">Read Case Study <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="certifications-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="subtitle">Qualifications</span>
+                    <h2 class="title">Certifications</h2>
+                </div>
+                <div class="certs-grid">
+                    <div class="cert-card tilt-card ripple-container reveal" style="transition-delay:0s">
+                        <div class="tilt-sheen"></div>
+                        <div class="cert-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                        <div class="cert-info">
+                            <h3>Google Data Analytics</h3>
+                            <p>Coursera Professional Certificate</p>
+                        </div>
+                    </div>
+                    <div class="cert-card tilt-card ripple-container reveal" style="transition-delay:0.1s">
+                        <div class="tilt-sheen"></div>
+                        <div class="cert-icon"><i class="fa-solid fa-robot"></i></div>
+                        <div class="cert-info">
+                            <h3>IBM Machine Learning</h3>
+                            <p>Coursera Professional Certificate</p>
+                        </div>
+                    </div>
+                    <div class="cert-card tilt-card ripple-container reveal" style="transition-delay:0.2s">
+                        <div class="tilt-sheen"></div>
+                        <div class="cert-icon"><i class="fa-solid fa-database"></i></div>
+                        <div class="cert-info">
+                            <h3>IBM Relational Database Administration</h3>
+                            <p>Coursera Professional Certificate</p>
+                        </div>
+                    </div>
+                    <div class="cert-card tilt-card ripple-container reveal" style="transition-delay:0.3s">
+                        <div class="tilt-sheen"></div>
+                        <div class="cert-icon"><i class="fa-solid fa-network-wired"></i></div>
+                        <div class="cert-info">
+                            <h3>Artificial Intelligence Foundations</h3>
+                            <p>LinkedIn Learning - Thinking Machines</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements & Leadership Section -->
+        <section id="achievements" class="achievements-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="subtitle">Beyond Code</span>
+                    <h2 class="title">Achievements &amp; Leadership</h2>
+                </div>
+                <div class="achievements-grid">
+
+                    <div class="achievement-card tilt-card ripple-container reveal" style="transition-delay:0s">
+                        <div class="tilt-sheen"></div>
+                        <div class="achievement-icon" style="--icon-color: hsl(45, 90%, 58%)">
+                            <i class="fa-solid fa-medal"></i>
+                        </div>
+                        <div class="achievement-body">
+                            <h3>Gold Medalist</h3>
+                            <p>Awarded Gold Medal in the <strong>National Astronomy &amp; Science Olympiad (NASO)</strong> — a competitive national-level science competition.</p>
+                            <span class="achievement-tag">Academic Excellence</span>
+                        </div>
+                    </div>
+
+                    <div class="achievement-card tilt-card ripple-container reveal" style="transition-delay:0.12s">
+                        <div class="tilt-sheen"></div>
+                        <div class="achievement-icon" style="--icon-color: hsl(345, 80%, 65%)">
+                            <i class="fa-solid fa-hand-holding-heart"></i>
+                        </div>
+                        <div class="achievement-body">
+                            <h3>NGO Volunteer</h3>
+                            <p>Actively volunteered for multiple NGOs dedicated to <strong>child education and children's rights</strong>, making a tangible community impact.</p>
+                            <span class="achievement-tag">Community Service</span>
+                        </div>
+                    </div>
+
+                    <div class="achievement-card tilt-card ripple-container reveal" style="transition-delay:0.24s">
+                        <div class="tilt-sheen"></div>
+                        <div class="achievement-icon" style="--icon-color: hsl(210, 75%, 60%)">
+                            <i class="fa-solid fa-people-group"></i>
+                        </div>
+                        <div class="achievement-body">
+                            <h3>Community Organiser</h3>
+                            <p>Participated in and organized campaigns against <strong>child labor</strong>, led cleanliness drives, and supported child welfare initiatives.</p>
+                            <span class="achievement-tag">Leadership</span>
+                        </div>
+                    </div>
+
+                    <div class="achievement-card tilt-card ripple-container reveal" style="transition-delay:0.36s">
+                        <div class="tilt-sheen"></div>
+                        <div class="achievement-icon" style="--icon-color: hsl(160, 60%, 50%)">
+                            <i class="fa-solid fa-flask"></i>
+                        </div>
+                        <div class="achievement-body">
+                            <h3>5+ Technical Projects</h3>
+                            <p>Independently architected and shipped over five production-level AI and full-stack projects spanning computer vision, GIS, RAG systems, and environmental science.</p>
+                            <span class="achievement-tag">Engineering</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="subtitle">Let's talk</span>
+                    <h2 class="title">Get In Touch</h2>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-card tilt-card reveal reveal-left">
+                        <div class="tilt-sheen"></div>
+                        <h3>Connect Details</h3>
+                        <p>Feel free to reach out for collaborations, projects, or inquiries.</p>
+                        <ul class="contact-links">
+                            <li>
+                                <a href="mailto:amithsirisilla28@gmail.com">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <span>amithsirisilla28@gmail.com</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tel:+918688943880">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <span>+91-8688943880</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/Amith-S28" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-github"></i>
+                                    <span>GitHub Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/amith-sirisilla-7b4850240/" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-linkedin"></i>
+                                    <span>LinkedIn Profile</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="contact-form-wrapper reveal reveal-right">
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required placeholder="john@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required placeholder="How can I help you?"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block magnetic-btn">Send Message</button>
+                        </form>
+                        <div id="formStatus" class="form-status"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Amith Sirisilla Jayadevgari. Built with precision and Anime.js.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Case Study Modal Overlay -->
+    <div class="modal" id="projectModal" aria-hidden="true">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-container">
+            <button class="modal-close" id="modalClose" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-body" id="modalBody">
+                <!-- Content injected via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Anime.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <!-- Portfolio JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
