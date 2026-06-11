@@ -107,7 +107,7 @@
                             </div>
                             <div class="stat-card tilt-card">
                                 <div class="tilt-sheen"></div>
-                                <span class="stat-num" data-count-target="6.82" data-count-decimals="2">6.82</span>
+                                <span class="stat-num" data-count-target="7" data-count-suffix=".0">7.0</span>
                                 <span class="stat-label">B.Tech CGPA</span>
                             </div>
                             <div class="stat-card tilt-card">
@@ -155,17 +155,6 @@
                 <div class="timeline">
 
                     <div class="timeline-item reveal" style="transition-delay:0s">
-                        <div class="timeline-dot"><i class="fa-solid fa-trophy"></i></div>
-                        <div class="timeline-content tilt-card">
-                            <div class="tilt-sheen"></div>
-                            <span class="timeline-date">2019</span>
-                            <h3>Gold Medal — NASO Olympiad</h3>
-                            <p>Achieved a Gold Medal in the National Astronomy &amp; Science Olympiad, demonstrating an early drive toward rigorous scientific thinking and analytical problem-solving.</p>
-                            <span class="timeline-tag">Achievement</span>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item reveal" style="transition-delay:0.1s">
                         <div class="timeline-dot"><i class="fa-solid fa-graduation-cap"></i></div>
                         <div class="timeline-content tilt-card">
                             <div class="tilt-sheen"></div>
@@ -191,10 +180,10 @@
                         <div class="timeline-dot"><i class="fa-solid fa-brain"></i></div>
                         <div class="timeline-content tilt-card">
                             <div class="tilt-sheen"></div>
-                            <span class="timeline-date">2024</span>
-                            <h3>Explainable Smart Parking &amp; MedRAG</h3>
-                            <p>Engineered two flagship AI systems: a multi-modal temporal-spatial parking forecaster (YOLOv8 + LSTM + Grad-CAM) and a fully offline clinical RAG pipeline with LanceDB and 0MB idle RAM footprint.</p>
-                            <span class="timeline-tag">Projects</span>
+                            <span class="timeline-date">2026 — In Progress</span>
+                            <h3>MedRAG — Currently Building</h3>
+                            <p>Actively building a fully offline, privacy-first clinical RAG pipeline using Chandra OCR 2 for layout-perfect document parsing, LanceDB for zero-idle-RAM vector indexing, and Qwen 3.5 9B for local LLM synthesis. No cloud APIs — runs entirely on Apple Silicon.</p>
+                            <span class="timeline-tag">Active Project</span>
                         </div>
                     </div>
 
@@ -320,8 +309,8 @@
                 </div>
             </div>
             <div class="marquee-wrapper">
-                <div class="marquee-track" id="marqueeTrack">
-                    <!-- Row 1 (duplicated for seamless loop) -->
+                <!-- Row 1: scrolls LEFT -->
+                <div class="marquee-track">
                     <div class="tech-badge"><i class="fa-brands fa-python"></i><span>Python</span></div>
                     <div class="tech-badge"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
                     <div class="tech-badge"><i class="fa-brands fa-react"></i><span>React</span></div>
@@ -330,6 +319,18 @@
                     <div class="tech-badge"><i class="fa-brands fa-docker"></i><span>Docker</span></div>
                     <div class="tech-badge"><i class="fa-solid fa-brain"></i><span>PyTorch</span></div>
                     <div class="tech-badge"><i class="fa-solid fa-eye"></i><span>OpenCV</span></div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="tech-badge"><i class="fa-brands fa-python"></i><span>Python</span></div>
+                    <div class="tech-badge"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
+                    <div class="tech-badge"><i class="fa-brands fa-react"></i><span>React</span></div>
+                    <div class="tech-badge"><i class="fa-brands fa-node-js"></i><span>Node.js</span></div>
+                    <div class="tech-badge"><i class="fa-brands fa-git-alt"></i><span>Git</span></div>
+                    <div class="tech-badge"><i class="fa-brands fa-docker"></i><span>Docker</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-brain"></i><span>PyTorch</span></div>
+                    <div class="tech-badge"><i class="fa-solid fa-eye"></i><span>OpenCV</span></div>
+                </div>
+                <!-- Row 2: scrolls RIGHT (opposite direction) -->
+                <div class="marquee-track marquee-track-reverse">
                     <div class="tech-badge"><i class="fa-solid fa-database"></i><span>DuckDB</span></div>
                     <div class="tech-badge"><i class="fa-solid fa-map"></i><span>Deck.gl</span></div>
                     <div class="tech-badge"><i class="fa-solid fa-globe"></i><span>Google Earth Engine</span></div>
@@ -338,15 +339,7 @@
                     <div class="tech-badge"><i class="fa-solid fa-layer-group"></i><span>Next.js</span></div>
                     <div class="tech-badge"><i class="fa-solid fa-microchip"></i><span>YOLOv8</span></div>
                     <div class="tech-badge"><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Apache Arrow</span></div>
-                    <!-- Duplicate for seamless infinite scroll -->
-                    <div class="tech-badge"><i class="fa-brands fa-python"></i><span>Python</span></div>
-                    <div class="tech-badge"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
-                    <div class="tech-badge"><i class="fa-brands fa-react"></i><span>React</span></div>
-                    <div class="tech-badge"><i class="fa-brands fa-node-js"></i><span>Node.js</span></div>
-                    <div class="tech-badge"><i class="fa-brands fa-git-alt"></i><span>Git</span></div>
-                    <div class="tech-badge"><i class="fa-brands fa-docker"></i><span>Docker</span></div>
-                    <div class="tech-badge"><i class="fa-solid fa-brain"></i><span>PyTorch</span></div>
-                    <div class="tech-badge"><i class="fa-solid fa-eye"></i><span>OpenCV</span></div>
+                    <!-- Duplicate for seamless loop -->
                     <div class="tech-badge"><i class="fa-solid fa-database"></i><span>DuckDB</span></div>
                     <div class="tech-badge"><i class="fa-solid fa-map"></i><span>Deck.gl</span></div>
                     <div class="tech-badge"><i class="fa-solid fa-globe"></i><span>Google Earth Engine</span></div>
@@ -509,18 +502,6 @@
                 <div class="achievements-grid">
 
                     <div class="achievement-card tilt-card ripple-container reveal" style="transition-delay:0s">
-                        <div class="tilt-sheen"></div>
-                        <div class="achievement-icon" style="--icon-color: hsl(45, 90%, 58%)">
-                            <i class="fa-solid fa-medal"></i>
-                        </div>
-                        <div class="achievement-body">
-                            <h3>Gold Medalist</h3>
-                            <p>Awarded Gold Medal in the <strong>National Astronomy &amp; Science Olympiad (NASO)</strong> — a competitive national-level science competition.</p>
-                            <span class="achievement-tag">Academic Excellence</span>
-                        </div>
-                    </div>
-
-                    <div class="achievement-card tilt-card ripple-container reveal" style="transition-delay:0.12s">
                         <div class="tilt-sheen"></div>
                         <div class="achievement-icon" style="--icon-color: hsl(345, 80%, 65%)">
                             <i class="fa-solid fa-hand-holding-heart"></i>
