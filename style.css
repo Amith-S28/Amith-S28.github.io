@@ -553,7 +553,7 @@ section {
     border: 1px solid var(--accent-teal);
     padding: 8px 18px;
     border-radius: var(--border-radius-sm);
-    background: hsla(180, 100%, 45%, 0.05);
+    background: var(--accent-teal-glow);
 }
 
 .nav-btn::after {
@@ -586,8 +586,8 @@ section {
     display: inline-flex;
     align-items: center;
     padding: 6px 16px;
-    background: hsla(180, 100%, 45%, 0.06);
-    border: 1px solid hsla(180, 100%, 45%, 0.2);
+    background: var(--accent-teal-glow);
+    border: 1px solid var(--border-glow);
     border-radius: 50px;
     color: var(--accent-teal);
     font-size: 0.85rem;
