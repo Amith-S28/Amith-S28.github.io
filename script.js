@@ -689,7 +689,7 @@ function initStarfield() {
 
     let stars = [];
     let shootingStars = [];
-    const maxStars = 360; // Increased count
+    const maxStars = 560; // Increased count
     let mouse = { x: -1000, y: -1000, active: false };
 
     function resizeCanvas() {
@@ -736,7 +736,7 @@ function initStarfield() {
         reset() {
             this.x = Math.random() * canvas.width * 0.6;
             this.y = Math.random() * canvas.height * 0.4;
-            this.length = Math.random() * 160 + 500; // Increased tail length
+            this.length = Math.random() * 500 + 500; // Increased tail length
             this.speed = Math.random() * 10 + 6;
             this.angle = Math.PI / 6 + Math.random() * (Math.PI / 12);
             this.opacity = 1;
