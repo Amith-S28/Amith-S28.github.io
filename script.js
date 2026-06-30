@@ -742,7 +742,7 @@ function initStarfield() {
         reset() {
             this.x = Math.random() * canvas.width * 0.6;
             this.y = Math.random() * canvas.height * 0.4;
-            this.length = Math.random() * 500 + 500; // Increased tail length
+            this.length = Math.random() * 600 + 900; // Increased tail length (Minimum is 900, Maximum is 1500)
             this.speed = Math.random() * 10 + 6;
             this.angle = Math.PI / 6 + Math.random() * (Math.PI / 12);
             this.opacity = 1;
@@ -761,7 +761,13 @@ function initStarfield() {
         draw(isLight) {
             ctx.save();
             ctx.globalAlpha = this.opacity;
-            const grad = ctx.createLinearGradient(this.x, this.y, this.x - this.vx * 3, this.y - this.vy * 3);
+            // Linear gradient matches the full direction and length of the trail
+            const grad = ctx.createLinearGradient(
+                this.x, 
+                this.y, 
+                this.x - Math.cos(this.angle) * this.length, 
+                this.y - Math.sin(this.angle) * this.length
+            );
             
             if (isLight) {
                 grad.addColorStop(0, 'rgba(30, 40, 50, 1)');

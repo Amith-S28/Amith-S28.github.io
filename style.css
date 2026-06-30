@@ -1473,13 +1473,13 @@ section {
 .marquee-track {
     display: flex;
     width: max-content;
-    animation: marquee-scroll 32s linear infinite;
+    animation: marquee-scroll 64s linear infinite;
 }
 
 /* Reverse track scrolls right instead of left */
 .marquee-track-reverse {
     animation-direction: reverse;
-    animation-duration: 36s;
+    animation-duration: 72s;
 }
 
 .marquee-group {
