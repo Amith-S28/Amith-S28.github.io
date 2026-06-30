@@ -1,0 +1,159 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Amith Sirisilla Jayadevgari} \\ \vspace{2pt}
+    \small Hyderabad, India $|$ +91-8688943880 $|$ \href{mailto:amithsirisilla28@gmail.com}{\underline{amithsirisilla28@gmail.com}} $|$
+    \href{https://github.com/Amith-S28}{\underline{github.com/Amith-S28}} $|$ \href{https://www.linkedin.com/in/amith-sirisilla-7b4850240/}{\underline{linkedin.com/in/amith-sirisilla}}
+\end{center}
+
+%-----------PROFESSIONAL SUMMARY-----------
+\section{PROFESSIONAL SUMMARY}
+Computer Science student specializing in deploying local Large Language Models (LLMs) and building high-performance, spatial-temporal Machine Learning (ML) pipelines. Proven track record engineering zero-idle-memory RAG pipelines, vision-language OCR parsers, and real-time spatial database compute engines with sub-second query latency. Adept at optimizing inference pipelines, vector databases, and 3D WebGL visualizations using PyTorch, DuckDB Spatial, Jina Embeddings, and Apache Arrow.
+
+%-----------KEY PROJECTS-----------
+\section{KEY PROJECTS}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{MedRAG (Clinical RAG Pipeline)} $|$ \href{https://github.com/Amith-S28/BestSAASEver}{\underline{GitHub}} $|$ \emph{Python, LanceDB, Qwen 3.5, Chandra OCR 2, Jina Embeddings v5, FastAPI}}{}
+          \resumeItemListStart
+            \resumeItem{Reduced query latency in a Natural Language Processing (NLP) pipeline to \textbf{<150ms} by implementing semantic search and indexing on disk via the \textbf{LanceDB} vector database, maintaining a \textbf{0MB idle RAM footprint}.}
+            \resumeItem{Achieved \textbf{~94\%} parsing accuracy on layout-dense clinical datasets by deploying the \textbf{Chandra OCR 2} vision-language model, generating chunk-free vector embeddings via \textbf{Jina Embeddings v5} (32k context window).}
+            \resumeItem{Sustained offline model inference speeds of \textbf{14 tokens/sec} by applying 5-bit integer quantization (Q5\_K\_M) parameters to a local \textbf{Qwen 3.5 9B} LLM, optimizing memory baseline targets to \textbf{16GB} on Apple Silicon.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{CityPlanner (Urban Optimization Agent)} $|$ \href{https://github.com/Amith-S28/CityPlanner}{\underline{GitHub}} $|$ \emph{Python, TypeScript, Gemma AI, DuckDB Spatial, Apache Arrow, FastAPI, Deck.gl}}{}
+          \resumeItemListStart
+            \resumeItem{Automated multi-objective zoning planning by designing an AI agent system utilizing a local \textbf{Gemma} LLM for natural-language prompt processing and spatial feature engineering, cutting iterations by \textbf{65\%}.}
+            \resumeItem{Accelerated spatial database queries and relational vector intersections to \textbf{50k+ operations/sec} by designing a spatial indexing compute engine in \textbf{DuckDB Spatial}, cutting pipeline runtimes by \textbf{40\%}.}
+            \resumeItem{Eliminated dataset serialization latency by \textbf{70\%} during real-time data ingestion, streaming structured tables via \textbf{Apache Arrow IPC} to a 3D WebGL Deck.gl dashboard rendering at \textbf{60 FPS}.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Project PEANUT (Environmental Forecasting)} $|$ \href{https://github.com/Amith-S28/Project-PEANUT}{\underline{GitHub}} $|$ \emph{TypeScript, Python, Next.js, GEE, Scikit-Learn, Tailwind, Supabase}}{}
+          \resumeItemListStart
+            \resumeItem{Processed over \textbf{120GB of multispectral satellite imagery} via the \textbf{Google Earth Engine (GEE) API} for feature extraction of vegetation indices, scaling data pipeline analysis coverage by \textbf{3.5x}.}
+            \resumeItem{Trained a multi-variable Polynomial Regression model in \textbf{Scikit-Learn} to predict resource deficits, achieving an \textbf{R² score of 0.88} and optimizing predictive accuracy over population projection datasets.}
+            \resumeItem{Designed a spatial mapping dashboard serving predictions from supervised classification models, streaming structured GeoJSON layers via custom REST APIs.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{TECHNICAL SKILLS}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+      \textbf{Programming Languages}{: Python, TypeScript, JavaScript, SQL, C, Bash} \\
+      \textbf{Frameworks \& APIs}{: React, Next.js, Node.js, FastAPI, Streamlit, Deck.gl, Maplibre GL, Tailwind CSS} \\
+      \textbf{Machine Learning \& Deep Learning}{: PyTorch, TensorFlow, Scikit-Learn, Deep Learning Models, Hugging Face, Jina Embeddings, Ollama, LangChain, LlamaIndex, Retrieval-Augmented Generation (RAG), Semantic Search} \\
+      \textbf{NLP \& Computer Vision}{: CNNs, LSTMs, YOLOv8, OpenCV, Visual OCR, Explainable AI (XAI), Grad-CAM} \\
+      \textbf{Databases \& Spatial Computing}{: Google Earth Engine (GEE) API, DuckDB (Spatial Extension), Apache Arrow (IPC / PyArrow), LanceDB (Vector DB), Supabase, PostgreSQL} \\
+      \textbf{Tools \& Methodologies}{: Git, GitHub, Docker, Jupyter Notebook, Linux Systems, Agile/Scrum, OOP}
+    }}
+ \end{itemize}
+
+%-----------CERTIFICATIONS-----------
+\section{CERTIFICATIONS}
+    \resumeSubHeadingListStart
+        \resumeProjectHeading
+          {\textbf{Google Data Analytics Professional Certificate} $|$ \emph{Coursera}}{}
+        \resumeProjectHeading
+          {\textbf{IBM Machine Learning Professional Certificate} $|$ \emph{Coursera}}{}
+        \resumeProjectHeading
+          {\textbf{IBM Relational Database Administration (DBA)} $|$ \emph{Coursera}}{}
+        \resumeProjectHeading
+          {\textbf{Artificial Intelligence Foundations: Thinking Machines} $|$ \emph{LinkedIn Learning}}{}
+    \resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------
+\section{EDUCATION}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Lovely Professional University}{Jalandhar, Punjab}
+      {Bachelor of Technology in Computer Science and Engineering; CGPA: 7.0/10.0}{2022 -- 2026}
+  \resumeSubHeadingListEnd
+
+%-----------LEADERSHIP \& ACHIEVEMENTS-----------
+\section{LEADERSHIP \& ACHIEVEMENTS}
+    \resumeItemListStart
+        \resumeItem{\textbf{NGO Leadership \& Volunteering:} Coordinated a team of 15 volunteers to execute outreach campaigns for child education, directly teaching and supporting 150+ underprivileged children.}
+        \resumeItem{\textbf{Community Organizing:} Led local public safety and child labor awareness initiatives, coordinating with community stakeholders to organize webinars with 300+ attendees.}
+    \resumeItemListEnd
+
+\end{document}

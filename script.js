@@ -6,7 +6,7 @@ const projectDetails = {
     medrag: {
         tag: "AI/ML & RAG",
         title: "MedRAG: Local Clinical RAG System",
-        tech: ["Chandra OCR 2", "Jina v5 Omni", "LanceDB", "Qwen 3.5 9B", "Apache Arrow"],
+        tech: ["Chandra OCR 2", "Jina Embeddings v5", "LanceDB", "FastAPI", "Qwen 3.5 9B"],
         intro: "A privacy-first, fully offline Retrieval-Augmented Generation (RAG) system specialized in parsing, indexing, and synthesizing complex longitudinal clinical histories and diagnostic reports.",
         sections: [
             {
@@ -96,7 +96,7 @@ const projectDetails = {
     peanut: {
         tag: "Full-Stack & Environmental",
         title: "Project PEANUT",
-        tech: ["Next.js", "Python", "Google Earth Engine", "Scikit-Learn", "GeoJSON"],
+        tech: ["Next.js", "Google Earth Engine", "Scikit-Learn", "Supabase", "Tailwind CSS"],
         intro: "Predictive Environmental Analysis and Nature Utility Tracker. A dual-engine dashboard mapping greenery deficit across Indian sub-districts and forecasting ecological needs for 2035.",
         sections: [
             {
