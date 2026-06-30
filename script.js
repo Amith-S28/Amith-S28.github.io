@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMagneticButtons();
     initModalEvents();
     initContactForm();
-    initSakuraParticles();
+    initStarfield();
 });
 
 /* ==========================================================================
@@ -614,23 +614,18 @@ function initContactForm() {
 }
 
 /* ==========================================================================
-   HIGH-PERFORMANCE CANVAS SAKURA PETAL ENGINE
+   HIGH-PERFORMANCE CANVAS STARFIELD PHYSICS ENGINE
    ========================================================================== */
 
-function initSakuraParticles() {
-    const canvas = document.getElementById('sakura-canvas');
+function initStarfield() {
+    const canvas = document.getElementById('starfield-canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d', { alpha: true });
 
-    // Pre-baked flat colors — no createLinearGradient per frame (10x faster)
-    const PETAL_COLORS = [
-        'rgba(255,185,200,', // pink
-        'rgba(255,200,210,', // light pink
-        'rgba(255,215,225,', // blush
-    ];
-
-    let petals = [];
-    const maxPetals = 28; // reduced from 38 for headroom
+    let stars = [];
+    let shootingStars = [];
+    const maxStars = 80;
+    let mouse = { x: -1000, y: -1000, active: false };
 
     function resizeCanvas() {
         canvas.width  = window.innerWidth;
@@ -639,60 +634,178 @@ function initSakuraParticles() {
     window.addEventListener('resize', resizeCanvas, { passive: true });
     resizeCanvas();
 
-    class Petal {
-        constructor() { this.reset(true); }
+    // Mouse tracking for interactive physics
+    window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+        mouse.active = true;
+    }, { passive: true });
 
-        reset(initial = false) {
-            this.x      = Math.random() * canvas.width;
-            this.y      = initial ? Math.random() * canvas.height : -20;
-            this.size   = Math.random() * 7 + 5;
-            this.speedY = Math.random() * 0.9 + 0.45;
-            this.speedX = Math.random() * 0.7 - 0.18;
-            this.rotation  = Math.random() * Math.PI;
-            this.rotSpeed  = Math.random() * 0.012 - 0.006;
-            this.swing      = Math.random() * Math.PI * 2;
-            this.swingSpeed = Math.random() * 0.007 + 0.003;
-            this.opacity    = Math.random() * 0.3 + 0.25;
-            // Pick one of 3 pre-baked color strings
-            this.colorStr   = PETAL_COLORS[Math.floor(Math.random() * PETAL_COLORS.length)];
+    window.addEventListener('mouseleave', () => {
+        mouse.active = false;
+    }, { passive: true });
+
+    // Initialize deep space stars
+    for (let i = 0; i < maxStars; i++) {
+        stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            baseX: 0,
+            baseY: 0,
+            size: Math.random() * 1.5 + 0.5,
+            alpha: Math.random() * 0.6 + 0.2,
+            twinkleSpeed: Math.random() * 0.02 + 0.005,
+            twinkleDir: Math.random() > 0.5 ? 1 : -1,
+            color: Math.random() > 0.7 ? 'rgba(180, 255, 255, ' : 'rgba(255, 255, 255, ',
+            vx: Math.random() * 0.05 - 0.025,
+            vy: Math.random() * 0.05 - 0.025,
+            ox: 0,
+            oy: 0
+        });
+        stars[i].baseX = stars[i].x;
+        stars[i].baseY = stars[i].y;
+    }
+
+    class ShootingStar {
+        constructor() { this.reset(); }
+        reset() {
+            this.x = Math.random() * canvas.width * 0.6;
+            this.y = Math.random() * canvas.height * 0.4;
+            this.length = Math.random() * 80 + 40;
+            this.speed = Math.random() * 12 + 6;
+            this.angle = Math.PI / 6 + Math.random() * (Math.PI / 12);
+            this.opacity = 1;
+            this.active = true;
+            this.vx = Math.cos(this.angle) * this.speed;
+            this.vy = Math.sin(this.angle) * this.speed;
         }
-
         update() {
-            this.y += this.speedY;
-            this.x += this.speedX + Math.sin(this.swing) * 0.22;
-            this.swing    += this.swingSpeed;
-            this.rotation += this.rotSpeed;
-            if (this.y > canvas.height + 20) this.reset();
-            if (this.x > canvas.width  + 20) this.x = -20;
-            if (this.x < -20)                this.x = canvas.width + 20;
+            this.x += this.vx;
+            this.y += this.vy;
+            this.opacity -= 0.015;
+            if (this.opacity <= 0 || this.x > canvas.width || this.y > canvas.height) {
+                this.active = false;
+            }
         }
-
         draw() {
-            const s = this.size;
             ctx.save();
-            ctx.translate(this.x, this.y);
-            ctx.rotate(this.rotation);
             ctx.globalAlpha = this.opacity;
-            ctx.fillStyle = this.colorStr + '1)';
+            const grad = ctx.createLinearGradient(this.x, this.y, this.x - this.vx * 3, this.y - this.vy * 3);
+            grad.addColorStop(0, 'rgba(255, 255, 255, 1)');
+            grad.addColorStop(0.1, 'rgba(180, 255, 255, 0.8)');
+            grad.addColorStop(1, 'rgba(180, 255, 255, 0)');
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = 1.5;
             ctx.beginPath();
-            ctx.moveTo(0, -s / 2);
-            ctx.bezierCurveTo( s/2, -s/2,  s,    -s/4,  s/2,  s/2);
-            ctx.bezierCurveTo( s/4,  s/3, -s/4,   s/3, -s/2,  s/2);
-            ctx.bezierCurveTo(-s,   -s/4, -s/2,  -s/2,  0,   -s/2);
-            ctx.fill();
-            ctx.globalAlpha = 1;
+            ctx.moveTo(this.x, this.y);
+            ctx.lineTo(this.x - Math.cos(this.angle) * this.length, this.y - Math.sin(this.angle) * this.length);
+            ctx.stroke();
             ctx.restore();
         }
     }
 
-    for (let i = 0; i < maxPetals; i++) petals.push(new Petal());
-
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < petals.length; i++) {
-            petals[i].update();
-            petals[i].draw();
+
+        // Draw and update stars
+        for (let i = 0; i < stars.length; i++) {
+            const s = stars[i];
+
+            // Drift
+            s.baseX += s.vx;
+            s.baseY += s.vy;
+
+            // Wrap
+            if (s.baseX < 0) s.baseX = canvas.width;
+            if (s.baseX > canvas.width) s.baseX = 0;
+            if (s.baseY < 0) s.baseY = canvas.height;
+            if (s.baseY > canvas.height) s.baseY = 0;
+
+            // Twinkle
+            s.alpha += s.twinkleSpeed * s.twinkleDir;
+            if (s.alpha >= 0.8) {
+                s.alpha = 0.8;
+                s.twinkleDir = -1;
+            } else if (s.alpha <= 0.15) {
+                s.alpha = 0.15;
+                s.twinkleDir = 1;
+            }
+
+            // Mouse physics (repulsion)
+            if (mouse.active) {
+                const dx = mouse.x - s.baseX;
+                const dy = mouse.y - s.baseY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                const maxInfluence = 120;
+
+                if (dist < maxInfluence) {
+                    const force = (maxInfluence - dist) / maxInfluence;
+                    s.ox -= (dx / dist) * force * 15;
+                    s.oy -= (dy / dist) * force * 15;
+                }
+            }
+
+            s.ox *= 0.92;
+            s.oy *= 0.92;
+
+            const finalX = s.baseX + s.ox;
+            const finalY = s.baseY + s.oy;
+
+            ctx.beginPath();
+            ctx.arc(finalX, finalY, s.size, 0, Math.PI * 2);
+            ctx.fillStyle = s.color + s.alpha + ')';
+            ctx.fill();
         }
+
+        // Draw constellation lines
+        if (mouse.active) {
+            ctx.beginPath();
+            for (let i = 0; i < stars.length; i++) {
+                const s1 = stars[i];
+                const x1 = s1.baseX + s1.ox;
+                const y1 = s1.baseY + s1.oy;
+                
+                const dxMouse = mouse.x - x1;
+                const dyMouse = mouse.y - y1;
+                const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+
+                if (distMouse < 100) {
+                    for (let j = i + 1; j < stars.length; j++) {
+                        const s2 = stars[j];
+                        const x2 = s2.baseX + s2.ox;
+                        const y2 = s2.baseY + s2.oy;
+
+                        const dx = x1 - x2;
+                        const dy = y1 - y2;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        if (dist < 80) {
+                            ctx.moveTo(x1, y1);
+                            ctx.lineTo(x2, y2);
+                        }
+                    }
+                }
+            }
+            ctx.strokeStyle = 'rgba(180, 255, 255, 0.04)';
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+        }
+
+        // Shooting Stars
+        if (Math.random() < 0.003 && shootingStars.length < 2) {
+            shootingStars.push(new ShootingStar());
+        }
+
+        for (let i = shootingStars.length - 1; i >= 0; i--) {
+            const ss = shootingStars[i];
+            ss.update();
+            if (ss.active) {
+                ss.draw();
+            } else {
+                shootingStars.splice(i, 1);
+            }
+        }
+
         requestAnimationFrame(animate);
     }
     animate();

@@ -3,21 +3,21 @@
    ========================================================================== */
 
 :root {
-    /* Color Palette (Light Tactile HSL) */
-    --bg-dark: hsl(30, 25%, 97%); /* Warm tactile paper white */
-    --bg-surface: hsla(0, 0%, 100%, 0.6); /* Frosted translucent white glass */
-    --bg-surface-solid: hsl(0, 0%, 100%);
-    --border-color: hsla(24, 15%, 80%, 0.45);
-    --border-glow: hsla(345, 80%, 70%, 0.35);
+    /* Color Palette (Deep Space Obsidian Theme) */
+    --bg-dark: hsl(222, 24%, 4%); /* Deep obsidian space background */
+    --bg-surface: hsla(222, 24%, 8%, 0.45); /* Translucent space glass */
+    --bg-surface-solid: hsl(222, 24%, 8%);
+    --border-color: hsla(210, 15%, 80%, 0.12); /* Thin, clean cyber borders */
+    --border-glow: hsla(180, 100%, 45%, 0.3); /* SpaceX thruster cyan glow */
     
-    --text-primary: hsl(222, 25%, 12%); /* Deep slate for high legibility */
-    --text-secondary: hsl(222, 12%, 32%); /* Soft charcoal gray */
-    --text-muted: hsl(222, 8%, 52%);
+    --text-primary: hsl(210, 20%, 98%); /* Pure high-contrast ice white */
+    --text-secondary: hsl(210, 10%, 75%); /* Muted telemetry grey */
+    --text-muted: hsl(210, 8%, 52%);
     
-    --accent-teal: hsl(345, 80%, 70%); /* Soft Cherry Blossom (Sakura) Pink */
-    --accent-teal-glow: hsla(345, 80%, 70%, 0.25);
-    --accent-indigo: hsl(260, 50%, 65%); /* Delicate Lavender */
-    --accent-indigo-glow: hsla(260, 50%, 65%, 0.25);
+    --accent-teal: hsl(180, 100%, 45%); /* SpaceX Cyan Thruster Glow */
+    --accent-teal-glow: hsla(180, 100%, 45%, 0.18);
+    --accent-indigo: hsl(250, 80%, 65%); /* Quantum Nebula Purple */
+    --accent-indigo-glow: hsla(250, 80%, 65%, 0.18);
     
     --gradient-primary: linear-gradient(135deg, var(--accent-teal), var(--accent-indigo));
     --gradient-glow: linear-gradient(135deg, var(--accent-teal-glow), var(--accent-indigo-glow));
@@ -203,8 +203,8 @@ body::-webkit-scrollbar-thumb:hover {
    PAPER TEXTURE & DYNAMIC SHADER GRADIENTS
    ========================================================================== */
 
-/* 1. Tactile Repeating SVG Paper Grain Layer */
-.bg-paper-texture {
+/* 1. space Overlay Backdrop */
+.bg-space-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -212,12 +212,13 @@ body::-webkit-scrollbar-thumb:hover {
     height: 100%;
     z-index: -2;
     pointer-events: none;
-    opacity: 0.05; /* Subtle and soft paper grain overlay */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    background-image: radial-gradient(var(--border-glow) 1px, transparent 1px);
+    background-size: 24px 24px;
 }
 
-/* 2. falling sakura petal canvas */
-#sakura-canvas {
+/* 2. starfield canvas */
+#starfield-canvas {
     position: fixed;
     top: 0;
     left: 0;
@@ -225,12 +226,11 @@ body::-webkit-scrollbar-thumb:hover {
     height: 100%;
     z-index: -1;
     pointer-events: none;
-    /* Promote to own GPU layer */
     will-change: transform;
     transform: translateZ(0);
 }
 
-/* 3. Morphing Shader Gradient Mesh backdrop (Inspired by shadergradient.co) */
+/* 3. Morphing Shader Gradient Mesh backdrop */
 .shader-gradient-wrapper {
     position: fixed;
     top: 0;
@@ -238,18 +238,16 @@ body::-webkit-scrollbar-thumb:hover {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    z-index: -3; /* Placed at the very bottom */
+    z-index: -3;
     pointer-events: none;
-    background: radial-gradient(circle at 50% 50%, hsl(30, 25%, 98%), hsl(30, 15%, 96%));
+    background: radial-gradient(circle at 50% 50%, hsl(222, 24%, 6%), hsl(222, 24%, 2%));
 }
 
 .mesh-blob {
     position: absolute;
     border-radius: 50%;
-    /* Reduced blur from 110px → 65px — HUGE GPU savings */
-    filter: blur(65px);
-    opacity: 0.5;
-    /* Removed mix-blend-mode:multiply — eliminates full-screen composite layers */
+    filter: blur(80px);
+    opacity: 0.25;
     animation: morph-gradient 30s infinite alternate ease-in-out;
     will-change: transform;
     transform: translateZ(0);
@@ -258,7 +256,7 @@ body::-webkit-scrollbar-thumb:hover {
 .mb-1 {
     width: 550px;
     height: 550px;
-    background: hsl(345, 80%, 90%);
+    background: hsla(180, 100%, 50%, 0.12);
     top: -8%;
     left: -5%;
     animation-duration: 28s;
@@ -267,7 +265,7 @@ body::-webkit-scrollbar-thumb:hover {
 .mb-2 {
     width: 650px;
     height: 650px;
-    background: hsl(260, 65%, 92%);
+    background: hsla(250, 80%, 60%, 0.12);
     bottom: -12%;
     right: -8%;
     animation-duration: 35s;
@@ -276,7 +274,7 @@ body::-webkit-scrollbar-thumb:hover {
 .mb-3 {
     width: 480px;
     height: 480px;
-    background: hsl(35, 80%, 92%);
+    background: hsla(220, 80%, 50%, 0.1);
     top: 30%;
     left: 42%;
     animation-duration: 22s;
@@ -373,7 +371,7 @@ section {
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.08);
     border-color: var(--accent-teal);
     transform: translateY(-3px);
 }
@@ -393,7 +391,7 @@ section {
     left: 0;
     width: 100%;
     height: var(--navbar-height);
-    background: hsla(30, 25%, 97%, 0.7);
+    background: hsla(222, 24%, 4%, 0.7);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border-color);
@@ -403,9 +401,9 @@ section {
 
 .navbar.scrolled {
     height: 70px;
-    background: hsla(30, 25%, 97%, 0.85);
-    border-bottom: 1px solid hsla(345, 80%, 70%, 0.2);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    background: hsla(222, 24%, 4%, 0.85);
+    border-bottom: 1px solid hsla(180, 100%, 45%, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .nav-container {
@@ -486,7 +484,7 @@ section {
     border: 1px solid var(--accent-teal);
     padding: 8px 18px;
     border-radius: var(--border-radius-sm);
-    background: hsla(345, 80%, 70%, 0.05);
+    background: hsla(180, 100%, 45%, 0.05);
 }
 
 .nav-btn::after {
@@ -519,8 +517,8 @@ section {
     display: inline-flex;
     align-items: center;
     padding: 6px 16px;
-    background: hsla(345, 80%, 70%, 0.06);
-    border: 1px solid hsla(345, 80%, 70%, 0.2);
+    background: hsla(180, 100%, 45%, 0.06);
+    border: 1px solid hsla(180, 100%, 45%, 0.2);
     border-radius: 50px;
     color: var(--accent-teal);
     font-size: 0.85rem;
@@ -655,8 +653,8 @@ section {
 
 .stat-card:hover {
     border-color: var(--accent-teal);
-    box-shadow: 0 12px 30px rgba(120, 110, 100, 0.08);
-    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    background: hsla(222, 24%, 12%, 0.7);
 }
 
 .stat-num {
@@ -682,7 +680,7 @@ section {
     border: 1px solid var(--border-color);
     padding: 40px;
     border-radius: var(--border-radius-lg);
-    box-shadow: 0 10px 30px rgba(120, 110, 100, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .info-card h3 {
@@ -734,7 +732,7 @@ section {
     border: 1px solid var(--border-color);
     padding: 40px;
     border-radius: var(--border-radius-lg);
-    box-shadow: 0 10px 30px rgba(120, 110, 100, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .category-header {
@@ -820,7 +818,7 @@ section {
     inset: 0;
     border-radius: var(--border-radius-lg);
     padding: 1px;
-    background: linear-gradient(135deg, transparent, hsla(345, 80%, 70%, 0.15), transparent, hsla(260, 50%, 65%, 0.15), transparent);
+    background: linear-gradient(135deg, transparent, hsla(180, 100%, 45%, 0.15), transparent, hsla(250, 80%, 65%, 0.15), transparent);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -830,9 +828,9 @@ section {
 
 .project-card:hover {
     transform: translateY(-8px);
-    border-color: hsla(345, 80%, 70%, 0.3);
-    box-shadow: 0 25px 45px rgba(120, 110, 100, 0.15), 0 0 30px rgba(345, 80, 70, 0.05);
-    background: rgba(255, 255, 255, 0.75);
+    border-color: hsla(180, 100%, 45%, 0.3);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4), 0 0 30px rgba(180, 100, 45, 0.05);
+    background: hsla(222, 24%, 12%, 0.7);
 }
 
 .project-card:hover::before {
@@ -844,7 +842,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(circle at center, hsla(345, 50%, 96%, 0.7) 0%, var(--bg-surface-solid) 100%);
+    background: radial-gradient(circle at center, hsla(180, 100%, 45%, 0.08) 0%, var(--bg-surface-solid) 100%);
     border-bottom: 1px solid var(--border-color);
     position: relative;
     overflow: hidden;
@@ -920,7 +918,7 @@ section {
 
 .project-tech-tags span {
     font-size: 0.75rem;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.06);
     border: 1px solid var(--border-color);
     color: var(--text-secondary);
     padding: 4px 10px;
@@ -981,7 +979,7 @@ section {
 .cert-card:hover {
     border-color: var(--accent-teal);
     transform: scale(1.02);
-    background: rgba(255, 255, 255, 0.8);
+    background: hsla(222, 24%, 12%, 0.7);
 }
 
 .cert-icon {
@@ -1120,7 +1118,7 @@ section {
 }
 
 .form-group input, .form-group textarea {
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.04);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius-sm);
     padding: 12px 16px;
@@ -1133,8 +1131,8 @@ section {
 .form-group input:focus, .form-group textarea:focus {
     outline: none;
     border-color: var(--accent-teal);
-    box-shadow: 0 0 10px rgba(345, 80, 70, 0.15);
-    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 10px rgba(180, 100, 45, 0.15);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .form-status {
@@ -1169,10 +1167,10 @@ section {
     align-items: center;
     gap: 8px;
     padding: 6px 16px;
-    background: hsla(145, 60%, 50%, 0.08);
+    background: hsla(145, 60%, 50%, 0.12);
     border: 1px solid hsla(145, 60%, 50%, 0.25);
     border-radius: 50px;
-    color: hsl(145, 55%, 38%);
+    color: hsl(145, 85%, 65%);
     font-size: 0.82rem;
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -1214,7 +1212,7 @@ section {
 }
 
 .btn-ghost:hover {
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.08);
     border-color: var(--accent-teal);
     color: var(--accent-teal);
     transform: translateY(-3px);
@@ -1323,9 +1321,9 @@ section {
 }
 
 .timeline-content:hover {
-    box-shadow: 0 16px 40px rgba(120, 110, 100, 0.12);
-    border-color: hsla(345, 80%, 70%, 0.25);
-    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+    border-color: hsla(180, 100%, 45%, 0.25);
+    background: hsla(222, 24%, 12%, 0.7);
 }
 
 .timeline-date {
@@ -1364,7 +1362,7 @@ section {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.06);
     border: 1px solid var(--border-color);
     color: var(--text-muted);
     padding: 3px 10px;
@@ -1372,14 +1370,14 @@ section {
 }
 
 .open-tag {
-    background: hsla(145, 60%, 50%, 0.08);
+    background: hsla(145, 60%, 50%, 0.12);
     border-color: hsla(145, 60%, 50%, 0.25);
-    color: hsl(145, 55%, 38%);
+    color: hsl(145, 85%, 65%);
 }
 
 .future-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), hsla(345, 80%, 97%, 0.7)) !important;
-    border-color: hsla(345, 80%, 70%, 0.2) !important;
+    background: linear-gradient(135deg, var(--bg-surface-solid), hsla(180, 100%, 45%, 0.05)) !important;
+    border-color: hsla(180, 100%, 45%, 0.2) !important;
 }
 
 /* ==========================================================================
@@ -1443,9 +1441,9 @@ section {
 
 .tech-badge:hover {
     border-color: var(--accent-teal);
-    background: rgba(255, 255, 255, 0.85);
+    background: hsla(222, 24%, 12%, 0.7);
     transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(120, 110, 100, 0.12);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
 }
 
 .tech-badge i {
@@ -1493,16 +1491,16 @@ section {
 }
 
 .achievement-card:hover {
-    border-color: hsla(345, 80%, 70%, 0.25);
-    box-shadow: 0 20px 48px rgba(120, 110, 100, 0.12);
-    background: rgba(255, 255, 255, 0.8);
+    border-color: hsla(180, 100%, 45%, 0.25);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
+    background: hsla(222, 24%, 12%, 0.7);
 }
 
 .achievement-icon {
     width: 60px;
     height: 60px;
     border-radius: 16px;
-    background: hsla(0, 0%, 100%, 0.8);
+    background: var(--bg-surface-solid);
     border: 1px solid var(--border-color);
     display: flex;
     align-items: center;
@@ -1544,7 +1542,7 @@ section {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.06);
     border: 1px solid var(--border-color);
     color: var(--text-muted);
     padding: 3px 10px;
@@ -1559,7 +1557,7 @@ section {
     border-top: 1px solid var(--border-color);
     padding: 40px 0;
     text-align: center;
-    background: rgba(255, 255, 255, 0.4);
+    background: transparent;
 }
 
 .footer p {
@@ -1594,7 +1592,7 @@ section {
 .modal-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(240, 235, 230, 0.65);
+    background: rgba(4, 8, 12, 0.8);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 }
@@ -1623,7 +1621,7 @@ section {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--bg-surface-solid);
     border: 1px solid var(--border-color);
     color: var(--text-primary);
     cursor: pointer;
@@ -1693,7 +1691,7 @@ section {
 
 .case-tech span {
     font-size: 0.8rem;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.06);
     border: 1px solid var(--border-color);
     color: var(--text-secondary);
     padding: 6px 12px;
@@ -1757,7 +1755,7 @@ section {
 }
 
 .metric-item {
-    background: rgba(240, 235, 230, 0.4);
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border-color);
     padding: 16px;
     border-radius: var(--border-radius-md);
