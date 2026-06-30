@@ -22,6 +22,12 @@
     --gradient-primary: linear-gradient(135deg, var(--accent-teal), var(--accent-indigo));
     --gradient-glow: linear-gradient(135deg, var(--accent-teal-glow), var(--accent-indigo-glow));
 
+    /* Component specific theme vars - Dark Mode */
+    --navbar-bg: hsla(222, 24%, 4%, 0.7);
+    --navbar-bg-scrolled: hsla(222, 24%, 4%, 0.85);
+    --bg-surface-hover: hsla(222, 24%, 12%, 0.7);
+    --modal-overlay-bg: rgba(4, 8, 12, 0.8);
+
     /* Fonts & Typography */
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
@@ -50,6 +56,12 @@ body.light-theme {
     --accent-teal-glow: hsla(205, 85%, 50%, 0.12);
     --accent-indigo: hsl(265, 70%, 55%); /* Quantum Nebula Purple */
     --accent-indigo-glow: hsla(265, 70%, 55%, 0.12);
+
+    /* Component specific theme vars - Light Mode */
+    --navbar-bg: hsla(220, 20%, 97%, 0.7);
+    --navbar-bg-scrolled: hsla(220, 20%, 97%, 0.85);
+    --bg-surface-hover: hsla(220, 20%, 85%, 0.7);
+    --modal-overlay-bg: rgba(240, 235, 230, 0.7);
 }
 
 body.light-theme .shader-gradient-wrapper {
@@ -422,7 +434,7 @@ section {
     left: 0;
     width: 100%;
     height: var(--navbar-height);
-    background: hsla(222, 24%, 4%, 0.7);
+    background: var(--navbar-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border-color);
@@ -458,8 +470,8 @@ section {
 
 .navbar.scrolled {
     height: 70px;
-    background: hsla(222, 24%, 4%, 0.85);
-    border-bottom: 1px solid hsla(180, 100%, 45%, 0.2);
+    background: var(--navbar-bg-scrolled);
+    border-bottom: 1px solid var(--border-glow);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -711,7 +723,7 @@ section {
 .stat-card:hover {
     border-color: var(--accent-teal);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-    background: hsla(222, 24%, 12%, 0.7);
+    background: var(--bg-surface-hover);
 }
 
 .stat-num {
@@ -875,7 +887,7 @@ section {
     inset: 0;
     border-radius: var(--border-radius-lg);
     padding: 1px;
-    background: linear-gradient(135deg, transparent, hsla(180, 100%, 45%, 0.15), transparent, hsla(250, 80%, 65%, 0.15), transparent);
+    background: linear-gradient(135deg, transparent, var(--accent-teal-glow), transparent, var(--accent-indigo-glow), transparent);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -885,9 +897,9 @@ section {
 
 .project-card:hover {
     transform: translateY(-8px);
-    border-color: hsla(180, 100%, 45%, 0.3);
-    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4), 0 0 30px rgba(180, 100, 45, 0.05);
-    background: hsla(222, 24%, 12%, 0.7);
+    border-color: var(--border-glow);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4), 0 0 30px var(--accent-teal-glow);
+    background: var(--bg-surface-hover);
 }
 
 .project-card:hover::before {
@@ -899,7 +911,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(circle at center, hsla(180, 100%, 45%, 0.08) 0%, var(--bg-surface-solid) 100%);
+    background: radial-gradient(circle at center, var(--accent-teal-glow) 0%, var(--bg-surface-solid) 100%);
     border-bottom: 1px solid var(--border-color);
     position: relative;
     overflow: hidden;
@@ -1036,15 +1048,15 @@ section {
 .cert-card:hover {
     border-color: var(--accent-teal);
     transform: scale(1.02);
-    background: hsla(222, 24%, 12%, 0.7);
+    background: var(--bg-surface-hover);
 }
 
 .cert-icon {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: hsla(345, 80%, 70%, 0.05);
-    border: 1px solid hsla(345, 80%, 70%, 0.2);
+    background: var(--accent-teal-glow);
+    border: 1px solid var(--border-glow);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1379,8 +1391,8 @@ section {
 
 .timeline-content:hover {
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
-    border-color: hsla(180, 100%, 45%, 0.25);
-    background: hsla(222, 24%, 12%, 0.7);
+    border-color: var(--border-glow);
+    background: var(--bg-surface-hover);
 }
 
 .timeline-date {
@@ -1433,8 +1445,8 @@ section {
 }
 
 .future-card {
-    background: linear-gradient(135deg, var(--bg-surface-solid), hsla(180, 100%, 45%, 0.05)) !important;
-    border-color: hsla(180, 100%, 45%, 0.2) !important;
+    background: linear-gradient(135deg, var(--bg-surface-solid), var(--accent-teal-glow)) !important;
+    border-color: var(--border-glow) !important;
 }
 
 /* ==========================================================================
@@ -1498,7 +1510,7 @@ section {
 
 .tech-badge:hover {
     border-color: var(--accent-teal);
-    background: hsla(222, 24%, 12%, 0.7);
+    background: var(--bg-surface-hover);
     transform: translateY(-4px);
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
 }
@@ -1548,9 +1560,9 @@ section {
 }
 
 .achievement-card:hover {
-    border-color: hsla(180, 100%, 45%, 0.25);
+    border-color: var(--border-glow);
     box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
-    background: hsla(222, 24%, 12%, 0.7);
+    background: var(--bg-surface-hover);
 }
 
 .achievement-icon {
@@ -1649,7 +1661,7 @@ section {
 .modal-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(4, 8, 12, 0.8);
+    background: var(--modal-overlay-bg);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 }
