@@ -272,7 +272,13 @@ function initHeroRotation() {
     const rotateEl = document.querySelector('.txt-rotate');
     if (!rotateEl) return;
 
-    const toRotate = JSON.parse(rotateEl.getAttribute('data-rotate'));
+    let toRotate = [];
+    try {
+        toRotate = JSON.parse(rotateEl.getAttribute('data-rotate'));
+    } catch (e) {
+        console.error("Failed to parse data-rotate JSON:", e);
+        toRotate = ["Solving Complex Problems.", "Architecting The Future.", "Visualizing Data."];
+    }
     const period = parseInt(rotateEl.getAttribute('data-period'), 10) || 2000;
     let loopNum = 0, txt = '', isDeleting = false;
 
