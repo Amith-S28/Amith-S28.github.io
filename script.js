@@ -122,6 +122,36 @@ const projectDetails = {
         ],
         github: "https://github.com/Amith-S28/Project-PEANUT",
         live: "#"
+    },
+    mercorama: {
+        tag: "AI & Trade Intelligence",
+        title: "Mercorama: AI-Powered Trade Intelligence",
+        tech: ["Next.js 16", "Supabase", "TypeScript", "Claude 4.5", "Stripe"],
+        intro: "An AI-powered trade intelligence platform designed for Canadian SMEs to automate complex regulatory, classification, and research workflows.",
+        sections: [
+            {
+                title: "Business Problem",
+                icon: "fa-solid fa-triangle-exclamation",
+                content: "SMEs entering international trade face heavy regulatory burdens, tariff classification complexity (HS codes), and expensive consulting fees. Automating these classifications while keeping high precision is critical for commercial shipping."
+            },
+            {
+                title: "AI Integration & Classification",
+                icon: "fa-solid fa-gears",
+                content: "Mercorama leverages Claude 4.5 and local models via Ollama to automate trade document parsing, HS code mapping, and country-specific export regulations. The platform maps inputs to high-dimensional vectors stored in Supabase with pgvector for fast semantic lookup."
+            },
+            {
+                title: "Commercialization",
+                icon: "fa-solid fa-credit-card",
+                content: "Integrated Stripe billing to process metered charges on lead queries and standard subscription plans, deployed via clustered PM2 configurations on VPS architectures."
+            }
+        ],
+        metrics: [
+            { val: "Next.js 16", label: "Framework" },
+            { val: "pgvector", label: "Semantic Search" },
+            { val: "Stripe", label: "Billing Gateway" }
+        ],
+        github: "https://github.com/Amith-S28/Mercorama",
+        live: "#"
     }
 };
 
@@ -140,8 +170,43 @@ document.addEventListener('DOMContentLoaded', () => {
     initMagneticButtons();
     initModalEvents();
     initContactForm();
+    initThemeToggle();
     initStarfield();
 });
+
+/* ==========================================================================
+   THEME TOGGLE (LIGHT / DARK MODE)
+   ========================================================================== */
+
+function initThemeToggle() {
+    const toggleBtn = document.getElementById('themeToggle');
+    if (!toggleBtn) return;
+    
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+        const icon = toggleBtn.querySelector('i');
+        if (icon) icon.className = 'fa-solid fa-sun';
+    }
+    
+    toggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('light-theme');
+        const isLight = document.body.classList.contains('light-theme');
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        
+        const icon = toggleBtn.querySelector('i');
+        if (icon) {
+            icon.className = isLight ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        }
+        
+        anime({
+            targets: toggleBtn,
+            rotate: '+=360',
+            duration: 500,
+            easing: 'easeOutBack'
+        });
+    });
+}
 
 /* ==========================================================================
    STICKY NAVBAR & ACTIVE LINK DETECTION
@@ -624,7 +689,7 @@ function initStarfield() {
 
     let stars = [];
     let shootingStars = [];
-    const maxStars = 80;
+    const maxStars = 160; // Increased count
     let mouse = { x: -1000, y: -1000, active: false };
 
     function resizeCanvas() {
@@ -645,20 +710,20 @@ function initStarfield() {
         mouse.active = false;
     }, { passive: true });
 
-    // Initialize deep space stars
+    // Initialize deep space stars with varied size, brightness, and colors
     for (let i = 0; i < maxStars; i++) {
         stars.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
             baseX: 0,
             baseY: 0,
-            size: Math.random() * 1.5 + 0.5,
-            alpha: Math.random() * 0.6 + 0.2,
-            twinkleSpeed: Math.random() * 0.02 + 0.005,
+            size: Math.random() * 2.2 + 0.3, // Varied sizes (tiny to larger)
+            alpha: Math.random() * 0.7 + 0.1, // Varied initial brightness
+            twinkleSpeed: Math.random() * 0.015 + 0.003,
             twinkleDir: Math.random() > 0.5 ? 1 : -1,
-            color: Math.random() > 0.7 ? 'rgba(180, 255, 255, ' : 'rgba(255, 255, 255, ',
-            vx: Math.random() * 0.05 - 0.025,
-            vy: Math.random() * 0.05 - 0.025,
+            colorIndex: Math.floor(Math.random() * 4), // 0: White, 1: Blue, 2: Orange, 3: Gold
+            vx: Math.random() * 0.04 - 0.02,
+            vy: Math.random() * 0.04 - 0.02,
             ox: 0,
             oy: 0
         });
@@ -671,8 +736,8 @@ function initStarfield() {
         reset() {
             this.x = Math.random() * canvas.width * 0.6;
             this.y = Math.random() * canvas.height * 0.4;
-            this.length = Math.random() * 80 + 40;
-            this.speed = Math.random() * 12 + 6;
+            this.length = Math.random() * 160 + 100; // Increased tail length
+            this.speed = Math.random() * 10 + 6;
             this.angle = Math.PI / 6 + Math.random() * (Math.PI / 12);
             this.opacity = 1;
             this.active = true;
@@ -682,20 +747,28 @@ function initStarfield() {
         update() {
             this.x += this.vx;
             this.y += this.vy;
-            this.opacity -= 0.015;
+            this.opacity -= 0.012; // Muted tail decay for longer visibility
             if (this.opacity <= 0 || this.x > canvas.width || this.y > canvas.height) {
                 this.active = false;
             }
         }
-        draw() {
+        draw(isLight) {
             ctx.save();
             ctx.globalAlpha = this.opacity;
             const grad = ctx.createLinearGradient(this.x, this.y, this.x - this.vx * 3, this.y - this.vy * 3);
-            grad.addColorStop(0, 'rgba(255, 255, 255, 1)');
-            grad.addColorStop(0.1, 'rgba(180, 255, 255, 0.8)');
-            grad.addColorStop(1, 'rgba(180, 255, 255, 0)');
+            
+            if (isLight) {
+                grad.addColorStop(0, 'rgba(30, 40, 50, 1)');
+                grad.addColorStop(0.1, 'rgba(50, 100, 160, 0.7)');
+                grad.addColorStop(1, 'rgba(50, 100, 160, 0)');
+            } else {
+                grad.addColorStop(0, 'rgba(255, 255, 255, 1)');
+                grad.addColorStop(0.1, 'rgba(130, 180, 255, 0.7)');
+                grad.addColorStop(1, 'rgba(130, 180, 255, 0)');
+            }
+            
             ctx.strokeStyle = grad;
-            ctx.lineWidth = 1.5;
+            ctx.lineWidth = 1.8;
             ctx.beginPath();
             ctx.moveTo(this.x, this.y);
             ctx.lineTo(this.x - Math.cos(this.angle) * this.length, this.y - Math.sin(this.angle) * this.length);
@@ -706,6 +779,24 @@ function initStarfield() {
 
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const isLight = document.body.classList.contains('light-theme');
+
+        // Color palettes mapped for light vs dark theme
+        const darkThemeColors = [
+            'rgba(255, 255, 255, ',  // White
+            'rgba(130, 180, 255, ',  // Light blue
+            'rgba(255, 190, 140, ',  // Soft orange
+            'rgba(255, 220, 150, '   // Faint gold
+        ];
+
+        const lightThemeColors = [
+            'rgba(30, 40, 50, ',     // Charcoal
+            'rgba(50, 100, 160, ',   // Slate blue
+            'rgba(140, 70, 40, ',    // Earth brown
+            'rgba(130, 100, 40, '    // Muted ochre
+        ];
+
+        const colors = isLight ? lightThemeColors : darkThemeColors;
 
         // Draw and update stars
         for (let i = 0; i < stars.length; i++) {
@@ -723,11 +814,11 @@ function initStarfield() {
 
             // Twinkle
             s.alpha += s.twinkleSpeed * s.twinkleDir;
-            if (s.alpha >= 0.8) {
-                s.alpha = 0.8;
+            if (s.alpha >= 0.85) {
+                s.alpha = 0.85;
                 s.twinkleDir = -1;
-            } else if (s.alpha <= 0.15) {
-                s.alpha = 0.15;
+            } else if (s.alpha <= 0.1) {
+                s.alpha = 0.1;
                 s.twinkleDir = 1;
             }
 
@@ -753,7 +844,7 @@ function initStarfield() {
 
             ctx.beginPath();
             ctx.arc(finalX, finalY, s.size, 0, Math.PI * 2);
-            ctx.fillStyle = s.color + s.alpha + ')';
+            ctx.fillStyle = colors[s.colorIndex] + s.alpha + ')';
             ctx.fill();
         }
 
@@ -786,13 +877,13 @@ function initStarfield() {
                     }
                 }
             }
-            ctx.strokeStyle = 'rgba(180, 255, 255, 0.04)';
+            ctx.strokeStyle = isLight ? 'rgba(50, 100, 160, 0.04)' : 'rgba(130, 180, 255, 0.04)';
             ctx.lineWidth = 0.8;
             ctx.stroke();
         }
 
-        // Shooting Stars
-        if (Math.random() < 0.003 && shootingStars.length < 2) {
+        // Shooting Stars (Increased frequency)
+        if (Math.random() < 0.008 && shootingStars.length < 3) {
             shootingStars.push(new ShootingStar());
         }
 
@@ -800,7 +891,7 @@ function initStarfield() {
             const ss = shootingStars[i];
             ss.update();
             if (ss.active) {
-                ss.draw();
+                ss.draw(isLight);
             } else {
                 shootingStars.splice(i, 1);
             }
