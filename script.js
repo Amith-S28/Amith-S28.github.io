@@ -183,19 +183,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initThemeToggle() {
     const toggleBtn = document.getElementById('themeToggle');
+    const bgVideo = document.getElementById('lightThemeVideo');
     if (!toggleBtn) return;
+
+    function setVideoState(isLight) {
+        if (!bgVideo) return;
+        if (isLight) {
+            bgVideo.play().catch(() => {});
+        } else {
+            bgVideo.pause();
+        }
+    }
     
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') {
         document.body.classList.add('light-theme');
         const icon = toggleBtn.querySelector('i');
         if (icon) icon.className = 'fa-solid fa-sun';
+        setVideoState(true);
+    } else {
+        setVideoState(false);
     }
     
     toggleBtn.addEventListener('click', () => {
         document.body.classList.toggle('light-theme');
         const isLight = document.body.classList.contains('light-theme');
         localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        setVideoState(isLight);
         
         const icon = toggleBtn.querySelector('i');
         if (icon) {
