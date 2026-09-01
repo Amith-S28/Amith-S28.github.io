@@ -4,61 +4,63 @@
 
 const projectDetails = {
     medrag: {
-        tag: "AI/ML & RAG",
-        title: "MedRAG: Local Clinical RAG System",
-        tech: ["Chandra OCR 2", "Jina Embeddings v5", "LanceDB", "FastAPI", "Qwen 3.5 9B"],
-        intro: "A privacy-first, fully offline Retrieval-Augmented Generation (RAG) system specialized in parsing, indexing, and synthesizing complex longitudinal clinical histories and diagnostic reports.",
+        tag: "AI/ML & Clinical RAG",
+        title: "MedRAG: Clinical RAG Pipeline",
+        tech: ["Python", "LanceDB", "LLM Router", "FastAPI", "NVIDIA NIM", "Chandra OCR 2", "Jina Embeddings v5"],
+        intro: "An in-process, disk-backed hybrid retrieval and clinical RAG pipeline combining IVF-PQ vector search, Tantivy FTS with Reciprocal Rank Fusion (RRF), Chandra OCR 2 VLM table parsing, and dynamic multi-tier LLM routing with NVIDIA NIM.",
         sections: [
             {
-                title: "Problem Statement",
-                icon: "fa-solid fa-triangle-exclamation",
-                content: "Traditional RAG pipelines segment clinical charts into small, arbitrary text blocks. This fractures matrices (like metabolic blood panels or complete blood counts) and destroys layout relationships. Furthermore, uploading sensitive clinical records to cloud APIs introduces severe privacy risks."
+                title: "Hybrid Retrieval & RRF (<150ms Latency, 0MB Idle RAM)",
+                icon: "fa-solid fa-bolt",
+                content: "Engineered an in-process, disk-backed hybrid retrieval pipeline combining IVF-PQ vector search and Tantivy FTS with Reciprocal Rank Fusion (RRF) in LanceDB. Achieved <150ms query latency at a 0MB idle RAM footprint, preserving unified memory entirely for inference without background daemon overhead."
             },
             {
-                title: "Solution & Architecture",
-                icon: "fa-solid fa-gears",
-                content: "MedRAG operates completely offline using a local framework optimized for Apple Silicon MBP (M5) unified memory architectures. First, Chandra OCR 2 reads files layout-perfectly into Markdown tables, binding values to their coordinates. Next, Jina-Embeddings-v5-Omni-Small embeds the entire document atomically utilizing its 32k context window (no chunking). Vector coordinates and text are stored in LanceDB, which utilizes IVF-PQ vector indexing and Tantivy full-text search. Dynamic offline synthesis is handled by Qwen 3.5 9B Instruct."
+                title: "Vision-Language Clinical Parsing (Chandra OCR 2 & Jina v5)",
+                icon: "fa-solid fa-file-medical",
+                content: "Extracted layout-dense clinical tables and longitudinal EHR data at 94% parsing accuracy using the Chandra OCR 2 vision-language model. Stored full document representations with zero chunking via Jina Embeddings v5 across a 32k context window, preserving tabular matrices and EHR timeline correlations."
             },
             {
-                title: "Technical Highlight: Serverless Efficiency",
-                icon: "fa-solid fa-microchip",
-                content: "By avoiding pgvector or daemon-based systems (like Milvus or Weaviate) and choosing LanceDB, we achieved a 0MB idle RAM memory footprint. This leaves the system's active RAM completely available for model inference, hard-capping total active execution memory at ~16GB to prevent disk swapping on a 24GB device."
+                title: "Dynamic Multi-Tier Synthesis Router & NVIDIA NIM",
+                icon: "fa-solid fa-network-wired",
+                content: "Engineered a dynamic synthesis router selecting between offline local LLMs (Qwen 3.5 9B) and 3 cloud tiers via NVIDIA NIM based on query complexity: Ling 3.0 Flash (sub-second lookups), Laguna S 2.1 (>20k context), and Nemotron 3 Ultra 550B (complex clinical prognosis)."
             }
         ],
         metrics: [
-            { val: "32k", label: "No-Chunk Context" },
+            { val: "<150ms", label: "Query Latency" },
             { val: "0MB", label: "Idle RAM Footprint" },
-            { val: "16GB", label: "VRAM Memory Cap" }
+            { val: "94%", label: "Parsing Accuracy" },
+            { val: "32k", label: "Context Window" }
         ],
         github: "https://github.com/Amith-S28/BestSAASEver",
         live: "#"
     },
     cityplanner: {
-        tag: "GIS & Agent Dev",
-        title: "CityPlanner (AUOA)",
-        tech: ["DuckDB Spatial", "FastAPI", "Deck.gl", "Maplibre GL", "React", "Arrow IPC"],
-        intro: "An end-to-end autonomous urban planner and spatial optimization engine that converts natural language prompts into GPU-accelerated 3D procedural cities.",
+        tag: "GIS & Autonomous Agent",
+        title: "CityPlanner: Urban Optimization Agent",
+        tech: ["DuckDB Spatial", "Apache Arrow IPC", "Gemma AI", "FastAPI", "Deck.gl", "TypeScript", "Python"],
+        intro: "Autonomous multi-objective zoning planning and spatial optimization agent system cutting planning iterations by 65%, executing 50k+ ops/sec spatial indexing, and streaming Arrow IPC tables to 60 FPS 3D WebGL dashboards.",
         sections: [
             {
-                title: "Overview",
-                icon: "fa-solid fa-compass",
-                content: "AUOA (Autonomous Urban Optimization Agent) parses urban design constraints (e.g. 'design a dense commercial zone with high transit access while preserving green belts') into mathematical weight arrays and executes heavy GIS calculations on the database level."
+                title: "Multi-Objective AI Agent with Local Gemma LLM",
+                icon: "fa-solid fa-robot",
+                content: "Automated multi-objective zoning planning by designing an AI agent system utilizing a local Gemma LLM for natural-language prompt processing and spatial feature engineering, cutting design iterations by 65%."
             },
             {
-                title: "Computational Pipeline",
-                icon: "fa-solid fa-code-fork",
-                content: "Phase 1: Gemma AI Planner client translates prompts into optimizer configurations. Phase 2: DuckDB Spatial Engine reads parcel, network, and zoning datasets to perform relational vector intersections. Calculated polygons are packed into PyArrow IPC stream chunks. Phase 3: A FastAPI gateway streams these binary datasets directly to the client's WebGL dashboard."
+                title: "DuckDB Spatial Indexing Compute Engine",
+                icon: "fa-solid fa-database",
+                content: "Accelerated spatial database queries and relational vector intersections to 50k+ operations/sec by designing a spatial indexing compute engine in DuckDB Spatial, cutting pipeline runtimes by 40%."
             },
             {
-                title: "High-Performance 3D Frontend",
-                icon: "fa-solid fa-desktop",
-                content: "The user interface renders live 3D buildings, zoning grids, and transportation lines dynamically using Deck.gl and Maplibre GL layers. Custom UI slide interpolations, load overlays, and staggering animations are powered by Anime.js."
+                title: "Zero-Copy Arrow IPC Streaming to 60 FPS WebGL",
+                icon: "fa-solid fa-cube",
+                content: "Eliminated dataset serialization latency by 70% during real-time data ingestion, streaming structured tables via Apache Arrow IPC directly to a 3D WebGL Deck.gl dashboard rendering smoothly at 60 FPS."
             }
         ],
         metrics: [
-            { val: "3D", label: "WebGL Graphic Render" },
-            { val: "Zero-Copy", label: "Arrow IPC Streams" },
-            { val: "DuckDB", label: "In-Process Spatial DB" }
+            { val: "50k+", label: "Ops/Sec Spatial Index" },
+            { val: "65%", label: "Iteration Reduction" },
+            { val: "60 FPS", label: "3D WebGL Render" },
+            { val: "70%", label: "Latency Elimination" }
         ],
         github: "https://github.com/Amith-S28/CityPlanner",
         live: "#"
@@ -66,7 +68,7 @@ const projectDetails = {
     smartparking: {
         tag: "Computer Vision & XAI",
         title: "Explainable Smart Parking Framework",
-        tech: ["Python", "YOLOv8n", "LSTM", "Grad-CAM", "Integrated Gradients"],
+        tech: ["Python", "YOLOv8", "LSTM", "Grad-CAM", "Integrated Gradients", "OpenCV"],
         intro: "A unified temporal-spatial deep learning framework designed to detect empty parking spaces and forecast occupancy states while explaining predictions transparently.",
         sections: [
             {
@@ -77,12 +79,12 @@ const projectDetails = {
             {
                 title: "Deep Learning Pipeline",
                 icon: "fa-solid fa-bezier-curve",
-                content: "The framework runs YOLOv8n for real-time spatial object detection of occupied slot areas, achieving a Mean Average Precision (mAP@0.5) of 0.995 at 27 FPS. An LSTM network processes the historical sequences of occupancy probabilities alongside metadata (time, day) to predict state changes, reducing state oscillations by 22%."
+                content: "The framework runs YOLOv8 for real-time spatial object detection of occupied slot areas, achieving a Mean Average Precision (mAP@0.5) of 0.995 at 27 FPS. An LSTM network processes historical sequences of occupancy probabilities to predict state changes, reducing state oscillations by 22%."
             },
             {
                 title: "Explainable AI (XAI)",
                 icon: "fa-solid fa-eye",
-                content: "To build operator trust, we integrated Grad-CAM for spatial localization (visualizing YOLOv8 layer activations) and Integrated Gradients with Permutation Importance to quantify temporal feature contributions. This maps precisely which historical frames influenced the LSTM prediction."
+                content: "To build operator trust, we integrated Grad-CAM for spatial localization (visualizing YOLOv8 layer activations) and Integrated Gradients with Permutation Importance to quantify temporal feature contributions, explaining which frames influenced the LSTM forecast."
             }
         ],
         metrics: [
@@ -94,31 +96,32 @@ const projectDetails = {
         live: "#"
     },
     peanut: {
-        tag: "Full-Stack & Environmental",
-        title: "Project PEANUT",
-        tech: ["Next.js", "Google Earth Engine", "Scikit-Learn", "Supabase", "Tailwind CSS"],
-        intro: "Predictive Environmental Analysis and Nature Utility Tracker. A dual-engine dashboard mapping greenery deficit across Indian sub-districts and forecasting ecological needs for 2035.",
+        tag: "Remote Sensing & Environmental ML",
+        title: "Project PEANUT: Environmental Forecasting",
+        tech: ["Google Earth Engine", "Next.js", "Python", "TypeScript", "Scikit-Learn", "Supabase", "Tailwind CSS"],
+        intro: "Predictive Environmental Analysis and Nature Utility Tracker processing 120GB+ multispectral satellite imagery via Google Earth Engine API (3.5x coverage scale) and predicting regional resource deficits with Scikit-Learn (R² = 0.88).",
         sections: [
             {
-                title: "Ecological Tracking",
-                icon: "fa-solid fa-globe",
-                content: "PEANUT addresses greenery deficits in growing urban centers, aligning local municipal layouts with World Health Organization (WHO) per-capita green space requirements."
+                title: "120GB+ Multispectral Satellite Imagery via GEE API",
+                icon: "fa-solid fa-satellite",
+                content: "Processed over 120GB of multispectral satellite imagery via the Google Earth Engine (GEE) API for feature extraction of vegetation indices (NDVI), scaling data pipeline analysis coverage by 3.5x across regional ecosystems."
             },
             {
-                title: "Dual Engine Compute",
-                icon: "fa-solid fa-server",
-                content: "First, Google Earth Engine (GEE) processes batches of Sentinel-2 satellite imagery to calculate vegetation health using NDVI (Normalized Difference Vegetation Index). Second, a Scikit-Learn Polynomial Regression model predicts local population demands up to 2035 using historical WorldPop datasets."
+                title: "Predictive Resource Deficit Modeling (R² = 0.88)",
+                icon: "fa-solid fa-chart-line",
+                content: "Trained a multi-variable Polynomial Regression model in Scikit-Learn to predict resource deficits, achieving an R² score of 0.88 and optimizing predictive accuracy over population projection datasets through 2035."
             },
             {
-                title: "GIS Web Visualization",
+                title: "Spatial Mapping Dashboard & GeoJSON REST APIs",
                 icon: "fa-solid fa-map-location-dot",
-                content: "Next.js renders GeoJSON boundary layers of Indian sub-districts onto interactive maps. An integrated ecological recommendation engine analyses regional soil carbon content, rainfall, and surface water tables to recommend climate-appropriate tree species."
+                content: "Designed a high-throughput spatial mapping dashboard serving predictions from supervised classification models, streaming structured GeoJSON layers via custom REST APIs built on Next.js and Supabase."
             }
         ],
         metrics: [
-            { val: "2035", label: "Forecast Year" },
-            { val: "Sentinel-2", label: "Satellite Imagery" },
-            { val: "NDVI", label: "Vegetation Indexing" }
+            { val: "120GB+", label: "Satellite Imagery" },
+            { val: "0.88", label: "R² Regression Score" },
+            { val: "3.5x", label: "Pipeline Coverage" },
+            { val: "2035", label: "Forecast Horizon" }
         ],
         github: "https://github.com/Amith-S28/Project-PEANUT",
         live: "#"
