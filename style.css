@@ -328,7 +328,51 @@ body::-webkit-scrollbar-thumb:hover {
     display: none;
 }
 
-/* 4. Light Theme ASCII Animation Video Backdrop */
+/* 4. Dark Theme ASCII Animation Video Backdrop */
+.dark-bg-video-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -2;
+    pointer-events: none;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s ease;
+}
+
+.dark-bg-video-wrapper video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    opacity: 0.6;
+    mix-blend-mode: screen;
+}
+
+.dark-bg-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 40%, hsla(222, 24%, 4%, 0.25) 0%, hsla(222, 24%, 3%, 0.75) 100%);
+    pointer-events: none;
+}
+
+body.light-theme .dark-bg-video-wrapper {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* 5. Light Theme ASCII Animation Video Backdrop */
 .light-bg-video-wrapper {
     position: fixed;
     top: 0;

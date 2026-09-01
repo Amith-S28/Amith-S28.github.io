@@ -183,15 +183,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initThemeToggle() {
     const toggleBtn = document.getElementById('themeToggle');
-    const bgVideo = document.getElementById('lightThemeVideo');
+    const darkVideo = document.getElementById('darkThemeVideo');
+    const lightVideo = document.getElementById('lightThemeVideo');
     if (!toggleBtn) return;
 
     function setVideoState(isLight) {
-        if (!bgVideo) return;
         if (isLight) {
-            bgVideo.play().catch(() => {});
+            if (lightVideo) lightVideo.play().catch(() => {});
+            if (darkVideo) darkVideo.pause();
         } else {
-            bgVideo.pause();
+            if (darkVideo) darkVideo.play().catch(() => {});
+            if (lightVideo) lightVideo.pause();
         }
     }
     
